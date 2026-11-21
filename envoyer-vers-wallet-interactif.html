@@ -615,14 +615,16 @@ if(!gk||!kg)return;
 const wr=W.getBoundingClientRect(),z=wr.width/W.offsetWidth||1,a=gk.getBoundingClientRect(),b=kg.getBoundingClientRect(),cr=c1.getBoundingClientRect();
 const fs=parseFloat(getComputedStyle(gk).fontSize)||28,fk=parseFloat(getComputedStyle(kg).fontSize)||14;
 const f=document.createElement('div');f.className='pkfly';f.textContent='🔑';
-f.style.cssText='position:absolute;pointer-events:none;line-height:1;display:flex;align-items:center;justify-content:center;font-size:'+fs+'px;width:'+a.width/z+'px;height:'+a.height/z+'px;left:'+((a.left-cr.left)/z-c1.clientLeft)+'px;top:'+((a.top-cr.top)/z-c1.clientTop)+'px;filter:grayscale(1) brightness(1.35) contrast(1.1)';
+const cx=(a.left+a.width/2-cr.left)/z-c1.clientLeft,cy=(a.top+a.height/2-cr.top)/z-c1.clientTop;
+f.style.cssText='position:absolute;pointer-events:none;line-height:1;white-space:nowrap;left:'+cx+'px;top:'+cy+'px;font-size:'+fs+'px;filter:grayscale(1) brightness(1.35) contrast(1.1)';
 gk.style.position='relative';gk.style.zIndex='2';
 c1.insertBefore(f,gk);
-const dx=((b.left+b.width/2)-(a.left+a.width/2))/z,dy=((b.top+b.height/2)-(a.top+a.height/2))/z,s=fk/fs;
+const dx=((b.left+b.width/2)-(a.left+a.width/2))/z,dy=((b.top+b.height/2)-(a.top+a.height/2))/z;
+const C='translate(-50%,-50%) ';
 const kf=[
-{transform:'translate(0px,0px) rotate(0deg) scale(1)'},
-{transform:'translate('+(dx*.5+14)+'px,'+(dy*.5-46)+'px) rotate(-180deg) scale('+(1+s)/2+')',offset:.5},
-{transform:'translate('+dx+'px,'+dy+'px) rotate(-360deg) scale('+s+')'}];
+{transform:C+'translate(0px,0px) rotate(0deg)',fontSize:fs+'px'},
+{transform:C+'translate('+(dx*.5+14)+'px,'+(dy*.5-46)+'px) rotate(-180deg)',fontSize:(fs+fk)/2+'px',offset:.5},
+{transform:C+'translate('+dx+'px,'+dy+'px) rotate(-360deg)',fontSize:fk+'px'}];
 f.animate(kf,{duration:1700,easing:'cubic-bezier(.45,0,.25,1)',fill:'forwards'}).finished.then(()=>{
 kg.style.transition='none';kg.style.opacity=1;kg.getBoundingClientRect();
 requestAnimationFrame(()=>requestAnimationFrame(()=>{f.remove();gk.style.position='';gk.style.zIndex='';kg.style.transition=''}));
