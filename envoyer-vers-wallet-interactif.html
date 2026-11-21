@@ -542,7 +542,7 @@ const f3=document.querySelector('.field.f3 .v');
 if(q===17){ if(!window.__kf2){window.__kf2=1;f3.style.opacity=0;flyPub();} } else {window.__kf2=0;f3.style.opacity=1;}
 const vt=$('vault');
 if(dep){ if(window.__dep!==q){window.__dep=q;vt.classList.remove('in','hatch','drop');deposit(q);} } else {if(window.__dep!==-1)endDep();window.__dep=-1;vt.classList.remove('in','hatch','drop');}
-vt.classList.toggle('open',q>=24);
+clearTimeout(window.__vct);vt.classList.remove('open');
 const vcs=vt.querySelectorAll('.vc');
 if(!dep)vcs.forEach((c,i)=>{c.classList.toggle('on',q>=24||(q>=21&&i===1));});
 $('cap').innerHTML='<span class="swap">'+S[n][0]+'</span>';
