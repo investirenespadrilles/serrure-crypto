@@ -619,13 +619,11 @@ f.style.cssText='position:absolute;pointer-events:none;line-height:1;display:fle
 gk.style.position='relative';gk.style.zIndex='2';
 c1.insertBefore(f,gk);
 const dx=((b.left+b.width/2)-(a.left+a.width/2))/z,dy=((b.top+b.height/2)-(a.top+a.height/2))/z,s=fk/fs;
-const E='cubic-bezier(.45,0,.25,1)';
 const kf=[
-{transform:'translate(0px,0px) rotate(0deg) scale(1)',easing:'cubic-bezier(.3,0,.4,1)'},
-{transform:'translate(32px,-4px) rotate(0deg) scale(1)',offset:.2,easing:E},
-{transform:'translate('+(dx*.55+16)+'px,'+(dy*.5-50)+'px) rotate(-200deg) scale('+(1+s)/2+')',offset:.6,easing:E},
+{transform:'translate(0px,0px) rotate(0deg) scale(1)'},
+{transform:'translate('+(dx*.5+14)+'px,'+(dy*.5-46)+'px) rotate(-180deg) scale('+(1+s)/2+')',offset:.5},
 {transform:'translate('+dx+'px,'+dy+'px) rotate(-360deg) scale('+s+')'}];
-f.animate(kf,{duration:2100,fill:'forwards'}).finished.then(()=>{
+f.animate(kf,{duration:1700,easing:'cubic-bezier(.45,0,.25,1)',fill:'forwards'}).finished.then(()=>{
 kg.style.transition='none';kg.style.opacity=1;kg.getBoundingClientRect();
 requestAnimationFrame(()=>requestAnimationFrame(()=>{f.remove();gk.style.position='';gk.style.zIndex='';kg.style.transition=''}));
 }).catch(()=>{});
